@@ -37,6 +37,7 @@ export class CadastroTesouroDiretoComponent implements OnInit {
   tesouroForm!: UntypedFormGroup;
   movimentacaoForm!: FormGroup;
   actionBtn : string = "Salvar";
+  tesouroId!: number;
 
   ngOnInit(): void {
 
@@ -58,10 +59,10 @@ export class CadastroTesouroDiretoComponent implements OnInit {
       rendimento : ['', Validators.required,],
       rentabilidade : ['', Validators.required],
       vencimento : ['', ],
-      isActive : ['', Validators.required],
+      isActive : ['true', Validators.required],
       liquidez : ['', ],
       custos : ['',],
-      carteiraId : ['', Validators.required],
+      carteiraId : [1, Validators.required],
       bancoId : ['', Validators.required],
       indexadorRendimentosId : ['', Validators.required],
 
@@ -70,9 +71,13 @@ export class CadastroTesouroDiretoComponent implements OnInit {
     this.movimentacaoForm = this.formBuilder.group({
       movimentacaoId : ['', Validators.required],
       valor : ['', Validators.required],
-      unidades : ['', Validators.required,],
+      unidades : [1, Validators.required,],
       dataMovimentacao : ['', Validators.required],
-      statusMovimentacaoId : ['', ],
+      statusMovimentacaoId : [1, ],
+      rendaVariavelid : ['', Validators.required],
+      rendaFixaId : ['', ],
+      tesouroDiretoId : ['',],
+      poupancaId : ['', Validators.required],
     });
   }
 
@@ -80,22 +85,27 @@ export class CadastroTesouroDiretoComponent implements OnInit {
     const TesouroDireto : TesouroDireto = this.tesouroForm.value; 
     const movimentacao : Movimentacao = this.movimentacaoForm.value;
     TesouroDireto.rentabilidade = TesouroDireto.rentabilidade/100;
+    TesouroDireto.valorTotalInvestido = movimentacao.valor * movimentacao.unidades;
+
     if(!this.editData){
       this.service.salvarTesouro(TesouroDireto).subscribe({
         next:(res) => {
             this.toastr.success('Gravando!', 'Inserido com Sucesso!');
             this.tesouroForm.reset();
+            this.tesouroId = res.tesouroDiretoId;
             this.dialog.close('salvo');
-        },
-        error:()=> {
-          this.toastr.error('Algo deu errado', 'Error')
-        }
-      })
-      this.movService.Salvarmovimentacao(movimentacao).subscribe({
-        next:(res) => {
-            this.toastr.success('Gravando!', 'Inserido com Sucesso!');
-            this.movimentacaoForm.reset();
-            this.dialog.close('salvo');
+            movimentacao.tesouroDiretoId = this.tesouroId;
+            this.movService.Salvarmovimentacao(movimentacao).subscribe({
+              next:(res) => {
+                this.toastr.success('Gravando!', 'Inserido com Sucesso!');
+                this.movimentacaoForm.reset();
+                this.dialog.close('salvo');
+             },
+            error:()=> {
+              this.toastr.error('Algo deu errado', 'Error')
+            }
+          })
+      
         },
         error:()=> {
           this.toastr.error('Algo deu errado', 'Error')

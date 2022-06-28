@@ -24,7 +24,7 @@ export class CadastroComponent implements OnInit {
     private service: PoupancaService,
     private movService: MovimentacaoService,
     private toastr: ToastrService,
-    // @Inject(MAT_DIALOG_DATA) public editData : any,
+    @Inject(MAT_DIALOG_DATA) public editData : any,
     private dialog : MatDialogRef<CadastroComponent>,
     private bancoService: BancoService,
     private cartService: CarteiraService
@@ -35,6 +35,7 @@ export class CadastroComponent implements OnInit {
     poupancaForm!: UntypedFormGroup;
     movimentacaoForm!: FormGroup;
     actionBtn : string = "Salvar";
+    poupId!: number;
   
 
   ngOnInit(): void {
@@ -51,8 +52,8 @@ export class CadastroComponent implements OnInit {
       poupancaId : ['', Validators.required],
       valorTotalInvestido : ['', Validators.required],
       rendimento : ['', Validators.required,],
-      isActive : ['', Validators.required],
-      carteiraId : ['', Validators.required],
+      isActive : ['true', Validators.required],
+      carteiraId : [1, Validators.required],
       bancoId : ['', Validators.required],
 
     });
@@ -62,7 +63,11 @@ export class CadastroComponent implements OnInit {
       valor : ['', Validators.required],
       unidades : [1, Validators.required,],
       dataMovimentacao : ['', Validators.required],
-      statusMovimentacaoId : ['', ],
+      statusMovimentacaoId : [1, ],
+      rendaVariavelid : ['', Validators.required],
+      rendaFixaId : ['', ],
+      tesouroDiretoId : ['',],
+      poupancaId : ['', Validators.required],
     });
 
   }
@@ -70,30 +75,32 @@ export class CadastroComponent implements OnInit {
     const poupanca : Poupanca = this.poupancaForm.value;
     const movimentacao : Movimentacao = this.movimentacaoForm.value;
     poupanca.valorTotalInvestido = movimentacao.valor * movimentacao.unidades;
+    
    
-    // if(!this.editData){
-    //   this.service.salvarPoupanca(poupanca).subscribe({
-    //     next:(res) => {
-    //         this.toastr.success('Gravando!', 'Inserido com Sucesso!');
-    //         this.poupancaForm.reset();
-    //         this.dialog.close('salvo');
-    //     },
-    //     error:()=> {
-    //       this.toastr.error('Algo deu errado', 'Error')
-    //     }
-    //   })
-    //   this.movService.Salvarmovimentacao(movimentacao).subscribe({
-    //     next:(res) => {
-    //         this.toastr.success('Gravando!', 'Inserido com Sucesso!');
-    //         this.movimentacaoForm.reset();
-    //         this.dialog.close('salvo');
-    //     },
-    //     error:()=> {
-    //       this.toastr.error('Algo deu errado', 'Error')
-    //     }
-    //   })
-    // }
+    if(!this.editData){
+      this.service.salvarPoupanca(poupanca).subscribe({
+        next:(res) => {
+            this.toastr.success('Gravando!', 'Inserido com Sucesso Poupanca!');
+            this.poupancaForm.reset();
+            this.poupId = res.poupancaId;
+            this.dialog.close('salvo');
+            movimentacao.poupancaId = this.poupId;
+            this.movService.Salvarmovimentacao(movimentacao).subscribe({
+              next:(res) => {
+                  this.toastr.success('Gravando!', 'Inserido com Sucesso! movimentacao');
+                  this.movimentacaoForm.reset();
+                  this.dialog.close('salvo');
+              },
+              error:()=> {
+                this.toastr.error('Algo deu errado', 'Error movimentacao')
+              }
+            })   
+        },
+        error:()=> {
+          this.toastr.error('Algo deu errado Poupanca', 'Error')
+        }
+      })
+    }
   }
-
 
 }

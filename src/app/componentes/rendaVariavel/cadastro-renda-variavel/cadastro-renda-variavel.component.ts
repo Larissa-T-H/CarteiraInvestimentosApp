@@ -38,6 +38,7 @@ export class CadastroRendaVariavelComponent implements OnInit {
   rendaVariavelForm!: FormGroup;
   movimentacaoForm!: FormGroup;
   actionBtn : string = "Salvar";
+  rendaVId!: number;
 
   ngOnInit(): void {
 
@@ -59,10 +60,10 @@ export class CadastroRendaVariavelComponent implements OnInit {
       rendimento : ['', Validators.required,],
       unidades : ['', Validators.required],
       cotacaoMedia : ['', ],
-      isActive : ['', Validators.required],
+      isActive : ['true', Validators.required],
       cotacaoAtual : ['',],
       custos : ['', ],
-      carteiraId : ['', Validators.required],
+      carteiraId : ['1', Validators.required],
       produtoRendaVariavelId : ['', Validators.required],
       bancoId : ['', Validators.required],
 
@@ -73,7 +74,11 @@ export class CadastroRendaVariavelComponent implements OnInit {
       valor : ['', Validators.required],
       unidades : ['', Validators.required,],
       dataMovimentacao : ['', Validators.required],
-      statusMovimentacaoId : ['', ],
+      statusMovimentacaoId : [1, ],
+      rendaVariavelid : ['', Validators.required],
+      rendaFixaId : ['', ],
+      tesouroDiretoId : ['',],
+      poupancaId : ['', Validators.required],
     });
   }
 
@@ -87,22 +92,25 @@ export class CadastroRendaVariavelComponent implements OnInit {
         next:(res) => {
             this.toastr.success('Gravando!', 'Inserido com Sucesso!');
             this.rendaVariavelForm.reset();
+            this.rendaVId = res.rendaVariavelId;
             this.dialog.close('salvo');
-        },
-        error:()=> {
-          this.toastr.error('Algo deu errado', 'Error')
-        }
-      })
-      this.movService.Salvarmovimentacao(movimentacao).subscribe({
-        next:(res) => {
-            this.toastr.success('Gravando!', 'Inserido com Sucesso!');
-            this.movimentacaoForm.reset();
-            this.dialog.close('salvo');
-        },
-        error:()=> {
-          this.toastr.error('Algo deu errado', 'Error')
-        }
-      })
+            movimentacao.rendaVariavelid = this.rendaVId;
+            this.movService.Salvarmovimentacao(movimentacao).subscribe({
+              next:(res) => {
+                  this.toastr.success('Gravando!', 'Inserido com Sucesso!');
+                  this.movimentacaoForm.reset();
+                  this.dialog.close('salvo');
+              },
+              error:()=> {
+                this.toastr.error('Algo deu errado', 'Error')
+              }
+            })
+      
+          },
+          error:()=> {
+            this.toastr.error('Algo deu errado', 'Error')
+          }
+        })
     }
   }
 

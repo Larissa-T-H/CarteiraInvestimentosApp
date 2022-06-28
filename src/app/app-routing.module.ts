@@ -14,10 +14,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListLoginComponent } from './componentes/login/list-login/list-login.component';
 import { ListPoupancaComponent } from './componentes/poupanca/list-poupanca/list-poupanca.component';
-import { CadastroRendaFixaComponent } from './componentes/rendaFixa/cadastro-renda-fixa/cadastro-renda-fixa.component';
-import { CadastroComponent } from './componentes/poupanca/cadastro/cadastro.component';
-import { CadastroRendaVariavelComponent } from './componentes/rendaVariavel/cadastro-renda-variavel/cadastro-renda-variavel.component';
-import { CadastroTesouroDiretoComponent } from './componentes/tesouroDireto/cadastro-tesouro-direto/cadastro-tesouro-direto.component';
 
 const routes: Routes = [
   {path: 'banco', component: BancoComponent},
@@ -33,10 +29,6 @@ const routes: Routes = [
   {path: 'tesouroDireto', component: ListTesouroDiretoComponent},
   {path: 'rendaFixa', component: ListRendaFixaComponent},
   {path: 'rendaVariavel', component: ListRendaVariavelComponent},
-  {path: 'cadastroRendaFixa', component: CadastroRendaFixaComponent},
-  {path: 'cadastro', component: CadastroComponent},
-  {path: 'cadastroRendaVariavel', component: CadastroRendaVariavelComponent},
-  {path: 'cadastroTesouroDireto', component: CadastroTesouroDiretoComponent},
   {path: '', component: HomeComponent}
 ];
 

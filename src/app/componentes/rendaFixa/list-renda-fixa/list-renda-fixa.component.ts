@@ -7,6 +7,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
+import { CadastroRendaFixaComponent } from '../cadastro-renda-fixa/cadastro-renda-fixa.component';
 
 @Component({
   selector: 'app-list-renda-fixa',
@@ -35,9 +36,18 @@ export class ListRendaFixaComponent implements OnInit {
       if(val === 'salvo'){
         this.ListarTodosRendaFixa();
       }
-    });
-   
+    }); 
   }
+  openDialogCadastro() {
+    const dialogRef = this.dialog.open(CadastroRendaFixaComponent,{
+      width: '40%',
+    }).afterClosed().subscribe(val =>{
+      if(val === 'salvo'){
+        this.ListarTodosRendaFixa();
+      }
+    });
+  }
+  
 
   ListarTodosRendaFixa(){
     this.service.pegarTodos().subscribe(result => {

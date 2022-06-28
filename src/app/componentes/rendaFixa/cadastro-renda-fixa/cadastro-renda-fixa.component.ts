@@ -42,6 +42,7 @@ export class CadastroRendaFixaComponent implements OnInit {
     rendaFixaForm!: UntypedFormGroup;
     movimentacaoForm!: FormGroup;
     actionBtn : string = "Salvar";
+    rendaFId!: number;
 
   ngOnInit(): void {
     this.bancoService.ListarTodos().subscribe(data => {
@@ -66,10 +67,10 @@ export class CadastroRendaFixaComponent implements OnInit {
       rendimento : ['', Validators.required,],
       rentabilidade : ['', Validators.required],
       vencimento : ['', ],
-      isActive : ['', Validators.required],
+      isActive : ['true', Validators.required],
       liquidez : ['',],
       custos : ['', ],
-      carteiraId : ['', Validators.required],
+      carteiraId : [1, Validators.required],
       produtoRendaFixaId : ['', Validators.required],
       bancoId : ['', Validators.required],
       indexadorRendimentosId : ['', Validators.required],
@@ -81,7 +82,11 @@ export class CadastroRendaFixaComponent implements OnInit {
       valor : ['', Validators.required],
       unidades : ['', Validators.required,],
       dataMovimentacao : ['', Validators.required],
-      statusMovimentacaoId : ['', ],
+      statusMovimentacaoId : [1, ],
+      rendaVariavelid : ['', Validators.required],
+      rendaFixaId : ['', ],
+      tesouroDiretoId : ['',],
+      poupancaId : ['', Validators.required],
     });
   }
 
@@ -91,25 +96,28 @@ export class CadastroRendaFixaComponent implements OnInit {
     const movimentacao : Movimentacao = this.movimentacaoForm.value;
     rendaFixa.rentabilidade = rendaFixa.rentabilidade /100;
     
+    
     if(!this.editData){
       this.service.salvarRendaFixa(rendaFixa).subscribe({
         next:(res) => {
-            this.toastr.success('Gravando!', 'Inserido com Sucesso!');
+            this.toastr.success('Gravando!', 'Inserido com Sucesso!RendaFixa');
             this.rendaFixaForm.reset();
+            this.rendaFId = res.rendaFixaId;
             this.dialog.close('salvo');
+            movimentacao.rendaFixaId = this.rendaFId;
+            this.movService.Salvarmovimentacao(movimentacao).subscribe({
+              next:(res) => {
+                  this.toastr.success('Gravando!', 'Inserido com Sucesso! REndaFixa');
+                  this.movimentacaoForm.reset();
+                  this.dialog.close('salvo');
+            },
+            error:()=> {
+              this.toastr.error('Algo deu errado', 'Error RendaFixa')
+            }
+          })
         },
         error:()=> {
-          this.toastr.error('Algo deu errado', 'Error')
-        }
-      })
-      this.movService.Salvarmovimentacao(movimentacao).subscribe({
-        next:(res) => {
-            this.toastr.success('Gravando!', 'Inserido com Sucesso!');
-            this.movimentacaoForm.reset();
-            this.dialog.close('salvo');
-        },
-        error:()=> {
-          this.toastr.error('Algo deu errado', 'Error')
+            this.toastr.error('Algo deu errado', 'Error RendaFixa')
         }
       })
     }

@@ -6,6 +6,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
+import { CadastroComponent } from '../cadastro/cadastro.component';
 
 
 @Component({
@@ -30,6 +31,15 @@ export class ListPoupancaComponent implements OnInit {
   }
   openDialog() {
     const dialogRef = this.dialog.open(AddEditPoupancaComponent,{
+      width: '40%',
+    }).afterClosed().subscribe(val =>{
+      if(val === 'salvo'){
+        this.ListarTodosPoupanca();
+      }
+    });
+  }
+  openDialogCadastro() {
+    const dialogRef = this.dialog.open(CadastroComponent,{
       width: '40%',
     }).afterClosed().subscribe(val =>{
       if(val === 'salvo'){

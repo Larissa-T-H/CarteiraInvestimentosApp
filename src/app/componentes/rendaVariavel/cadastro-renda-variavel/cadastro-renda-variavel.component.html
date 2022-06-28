@@ -10,6 +10,10 @@
             </mat-select>
         </mat-form-field>
         <mat-form-field appearance="outline">
+            <mat-label>Nome Papel</mat-label>
+            <input formControlName="nomeDoPapel" matInput type="text" placeholder = "Ticket Papel">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
             <mat-label> Banco</mat-label>
             <mat-select formControlName="bancoId" placeholder="Banco" >
                 <div *ngFor="let u of bancos">

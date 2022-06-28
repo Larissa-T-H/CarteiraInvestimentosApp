@@ -34,6 +34,14 @@
             <mat-label>Custos</mat-label>
             <input formControlName="custos" matInput type="number" placeholder="Custos(Opcional)">
         </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label> Indexador</mat-label>
+            <mat-select formControlName="indexadorRendimentosId" placeholder="Indexador" >
+                <div *ngFor="let u of indexadores">
+                    <mat-option [value]="u.indexadorRendimentosId"> {{ u.indexadorRendimentosNome}} </mat-option>
+                </div>
+            </mat-select>
+          </mat-form-field>
     </form>
 </div>
 <div mat-dialog-actions [align]="'end'">

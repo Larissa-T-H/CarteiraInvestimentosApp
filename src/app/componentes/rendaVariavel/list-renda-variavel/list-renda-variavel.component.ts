@@ -10,6 +10,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 import { RendaVariavel } from 'src/app/models/rendaVariavel';
 import { AtualizarRendaVariavelService } from 'src/app/services/atualizar-renda-variavel.service';
+import { CadastroRendaVariavelComponent } from '../cadastro-renda-variavel/cadastro-renda-variavel.component';
 
 @Component({
   selector: 'app-list-renda-variavel',
@@ -51,6 +52,15 @@ export class ListRendaVariavelComponent implements OnInit {
       }
     });
 
+  }
+  openDialogCadastro() {
+    const dialogRef = this.dialog.open(CadastroRendaVariavelComponent,{
+      width: '40%',
+    }).afterClosed().subscribe(val =>{
+      if(val === 'salvo'){
+        this.ListarTodosRendaVariavel();
+      }
+    });
   }
   //metodo para pegar os dados
   ListarTodosRendaVariavel(){
