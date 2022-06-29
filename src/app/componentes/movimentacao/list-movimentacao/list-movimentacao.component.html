@@ -1,7 +1,7 @@
 <div class="container mt-3">
-    <button mat-raised-button color="warn" (click)="openDialog()">Adicionar Movimentação</button>
+    <button class="invisivel" mat-raised-button color="warn" (click)="openDialog()">Adicionar Movimentação</button>
   
-  <mat-form-field appearance="standard">
+  <mat-form-field class="invisivel" appearance="standard">
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
   </mat-form-field>
@@ -48,12 +48,12 @@
         <td mat-cell *matCellDef="let row" > <div *ngIf="row.poupancaId > 0">{{row.poupancaId}}</div>  </td>
       </ng-container>
       <ng-container matColumnDef="action"> 
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Ações </th>
+        <th class="invisivel" mat-header-cell *matHeaderCellDef mat-sort-header> Ações </th>
         <td mat-cell *matCellDef="let row">
-        <button mat-icon-button color="primary" (click)="editarPoupanca(row)">
+        <button class="invisivel" mat-icon-button color="primary" (click)="editarPoupanca(row)">
             <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button color="warn" (click)="apagarPoupanca(row.movimentacaoId)">
+        <button class="invisivel" mat-icon-button color="warn" (click)="apagarPoupanca(row.movimentacaoId)">
             <mat-icon>delete</mat-icon>
         </button>
         </td>

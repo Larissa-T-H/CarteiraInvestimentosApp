@@ -36,4 +36,9 @@ export class LoginService {
     const apiUrl = `${this.url}/${loginId}`;
     return this.http.delete<Login>(apiUrl, httpOptions); 
   }
+
+  VerificarLogin(login: Login): Observable<any>{
+    const apiUrl = `${this.url}/${login.loginEmail}`;
+    return this.http.post<Login>(apiUrl, login, httpOptions);      
+  }
 }

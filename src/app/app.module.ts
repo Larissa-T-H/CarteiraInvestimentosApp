@@ -1,6 +1,7 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AngularMaterialModule } from './angular-material.module';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -44,6 +45,8 @@ import { NovoinvestimentoComponent } from './componentes/investimentos/novoinves
 import { ReinvestimentoComponent } from './componentes/investimentos/reinvestimento/reinvestimento.component';
 import { VendaComponent } from './componentes/investimentos/venda/venda.component';
 import { HomeinvestimentoComponent } from './componentes/investimentos/homeinvestimento/homeinvestimento.component';
+import { NavbarUsuarioComponent } from './componentes/navbar-usuario/navbar-usuario.component';
+import { LoginUsuarioComponent } from './componentes/login/login-usuario/login-usuario.component';
 
 
 
@@ -88,6 +91,9 @@ import { HomeinvestimentoComponent } from './componentes/investimentos/homeinves
     ReinvestimentoComponent,
     VendaComponent,
     HomeinvestimentoComponent,
+    NavbarUsuarioComponent,
+    LoginUsuarioComponent,
+ 
    
   ],
   imports: [
@@ -102,6 +108,7 @@ import { HomeinvestimentoComponent } from './componentes/investimentos/homeinves
     ToastrModule.forRoot()
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
