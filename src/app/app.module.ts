@@ -40,6 +40,11 @@ import { CadastroComponent } from './componentes/poupanca/cadastro/cadastro.comp
 import { CadastroRendaFixaComponent } from './componentes/rendaFixa/cadastro-renda-fixa/cadastro-renda-fixa.component';
 import { CadastroRendaVariavelComponent } from './componentes/rendaVariavel/cadastro-renda-variavel/cadastro-renda-variavel.component';
 import { CadastroTesouroDiretoComponent } from './componentes/tesouroDireto/cadastro-tesouro-direto/cadastro-tesouro-direto.component';
+import { NovoinvestimentoComponent } from './componentes/investimentos/novoinvestimento/novoinvestimento.component';
+import { ReinvestimentoComponent } from './componentes/investimentos/reinvestimento/reinvestimento.component';
+import { VendaComponent } from './componentes/investimentos/venda/venda.component';
+import { HomeinvestimentoComponent } from './componentes/investimentos/homeinvestimento/homeinvestimento.component';
+
 
 
 
@@ -79,6 +84,10 @@ import { CadastroTesouroDiretoComponent } from './componentes/tesouroDireto/cada
     CadastroRendaFixaComponent,
     CadastroRendaVariavelComponent,
     CadastroTesouroDiretoComponent,
+    NovoinvestimentoComponent,
+    ReinvestimentoComponent,
+    VendaComponent,
+    HomeinvestimentoComponent,
    
   ],
   imports: [

@@ -14,6 +14,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListLoginComponent } from './componentes/login/list-login/list-login.component';
 import { ListPoupancaComponent } from './componentes/poupanca/list-poupanca/list-poupanca.component';
+import { HomeinvestimentoComponent } from './componentes/investimentos/homeinvestimento/homeinvestimento.component';
+import { NovoinvestimentoComponent } from './componentes/investimentos/novoinvestimento/novoinvestimento.component';
+import { ReinvestimentoComponent } from './componentes/investimentos/reinvestimento/reinvestimento.component';
+import { VendaComponent } from './componentes/investimentos/venda/venda.component';
+import { CadastroComponent } from './componentes/poupanca/cadastro/cadastro.component';
+import { CadastroRendaFixaComponent } from './componentes/rendaFixa/cadastro-renda-fixa/cadastro-renda-fixa.component';
+import { CadastroRendaVariavelComponent } from './componentes/rendaVariavel/cadastro-renda-variavel/cadastro-renda-variavel.component';
+import { CadastroTesouroDiretoComponent} from './componentes/tesouroDireto/cadastro-tesouro-direto/cadastro-tesouro-direto.component';
 
 const routes: Routes = [
   {path: 'banco', component: BancoComponent},
@@ -29,6 +37,14 @@ const routes: Routes = [
   {path: 'tesouroDireto', component: ListTesouroDiretoComponent},
   {path: 'rendaFixa', component: ListRendaFixaComponent},
   {path: 'rendaVariavel', component: ListRendaVariavelComponent},
+  {path: 'homeinvestimento', component: HomeinvestimentoComponent},
+  {path: 'novoinvestimento', component: NovoinvestimentoComponent},
+  {path: 'reinvestimento', component: ReinvestimentoComponent},
+  {path: 'venda', component: VendaComponent},
+  {path: 'cadastro', component: CadastroComponent},
+  {path: 'cadastroRendaFixa', component: CadastroRendaFixaComponent},
+  {path: 'cadastroRendaVariavel', component: CadastroRendaVariavelComponent},
+  {path: 'cadastroTesouroDireto', component: CadastroTesouroDiretoComponent},
   {path: '', component: HomeComponent}
 ];
 
