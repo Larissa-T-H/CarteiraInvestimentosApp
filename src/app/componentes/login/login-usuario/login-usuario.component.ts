@@ -8,6 +8,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 import { AutenticacaoService } from 'src/app/services/autenticacao.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-login-usuario',
   templateUrl: './login-usuario.component.html',
@@ -17,7 +18,11 @@ export class LoginUsuarioComponent implements OnInit {
 
 
   loginUs: any;
-  constructor(private autenticacaoService: AutenticacaoService, private router: Router, private toastr: ToastrService) { 
+  constructor(private service: AutenticacaoService, 
+    private router: Router, 
+    private toastr: ToastrService) 
+    { 
+
     this.loginUs = new FormGroup({
       email: new FormControl(null),
       senha: new FormControl(null),    
@@ -32,10 +37,11 @@ export class LoginUsuarioComponent implements OnInit {
     const email = this.loginUs.get('email').value;
     const senha = this.loginUs.get('senha').value;
 
-    this.autenticacaoService.obterUsuarioEmailSenha(email, senha).subscribe(
+    this.service.obterUsuarioEmailSenha(email, senha).subscribe(
       (resp)=>{
         window.sessionStorage.setItem('login', JSON.stringify(resp));
         this.router.navigate(['resumo']);
+        console.log(resp);
       },
       (error)=>{
         this.toastr.error('Verifique o email e a senha.', 'Atenção!');

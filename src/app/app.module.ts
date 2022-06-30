@@ -46,6 +46,8 @@ import { VendaComponent } from './componentes/investimentos/venda/venda.componen
 import { HomeinvestimentoComponent } from './componentes/investimentos/homeinvestimento/homeinvestimento.component';
 import { NavbarUsuarioComponent } from './componentes/navbar-usuario/navbar-usuario.component';
 import { LoginUsuarioComponent } from './componentes/login/login-usuario/login-usuario.component';
+import { LoginComponent } from './componentes/cadastroLogin/login/login.component';
+import { LoginCadastroComponent } from './componentes/cadastroLogin/login-cadastro/login-cadastro.component';
 
 
 
@@ -92,6 +94,8 @@ import { LoginUsuarioComponent } from './componentes/login/login-usuario/login-u
     HomeinvestimentoComponent,
     NavbarUsuarioComponent,
     LoginUsuarioComponent,
+    LoginComponent,
+    LoginCadastroComponent,
  
    
   ],
