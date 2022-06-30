@@ -5,6 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Login } from 'src/app/models/login';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { AutenticacaoService } from 'src/app/services/autenticacao.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-usuario',
@@ -13,29 +15,32 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class LoginUsuarioComponent implements OnInit {
 
-  
- constructor(private formBuilder: FormBuilder, private service: LoginService, private toastr: ToastrService,
-  @Inject(MAT_DIALOG_DATA) public editData : any,
-  private dialog : MatDialogRef<LoginUsuarioComponent>
-){}
 
-  // form: FormGroup = new FormGroup({
-  //   username: new FormControl(''),
-  //   password: new FormControl(''),
-  // })
-
-  // submit() {
-  //   if (this.form.valid) {
-  //     this.submitEM.emit(this.form.value);
-  //   }
-  // }
-  // @Input() error!: string | null;
-
-  // @Output() submitEM = new EventEmitter();
-  
+  loginUs: any;
+  constructor(private autenticacaoService: AutenticacaoService, private router: Router, private toastr: ToastrService) { 
+    this.loginUs = new FormGroup({
+      email: new FormControl(null),
+      senha: new FormControl(null),    
+    });
+  }
 
   ngOnInit(): void {
-    
   }
-  
+
+  login(): void{
+
+    const email = this.loginUs.get('email').value;
+    const senha = this.loginUs.get('senha').value;
+
+    this.autenticacaoService.obterUsuarioEmailSenha(email, senha).subscribe(
+      (resp)=>{
+        window.sessionStorage.setItem('login', JSON.stringify(resp));
+        this.router.navigate(['resumo']);
+      },
+      (error)=>{
+        this.toastr.error('Verifique o email e a senha.', 'Atenção!');
+      }
+    )
+  }
+
 }

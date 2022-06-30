@@ -1,6 +1,5 @@
-.container-login100 {
+.container-login {
   width: 100%;
-  min-height: 100vh;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -10,12 +9,11 @@
   justify-content: center;
   align-items: center;
   padding: 15px;
-  background: #060c22ed;
 }
 
-.wrap-login100 {
+.wlogin {
   width: 390px;
-  background: #fff;
+  background: rgb(214, 214, 226);
   border-radius: 10px;
   overflow: hidden;
   padding: 77px 55px 33px 55px;
@@ -24,10 +22,6 @@
   -webkit-box-shadow: 0 5px 10px 0px rgb(0 0 0 / 10%);
   -o-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
   -ms-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
-}
-
-img{
-  width: 270px;
 }
 
 h1{
