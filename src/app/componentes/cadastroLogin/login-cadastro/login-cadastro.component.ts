@@ -41,7 +41,7 @@ export class LoginCadastroComponent implements OnInit {
         next:(res) => {
             this.toastr.success('Gravando!', 'Inserido com Sucesso!');
             this.usuarioForm.reset();
-            this.dialog.close('salvo');
+            this.dialog.close('salvo'); 
         },
         error:()=> {
           this.toastr.error('Algo deu errado', 'Error')

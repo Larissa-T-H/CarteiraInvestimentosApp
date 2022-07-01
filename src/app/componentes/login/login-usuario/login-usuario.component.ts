@@ -16,9 +16,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class LoginUsuarioComponent implements OnInit {
 
-
+  usuarioForm!: FormGroup;
   loginUs: any;
-  constructor(private service: AutenticacaoService, 
+  constructor(private service: LoginService, 
     private router: Router, 
     private toastr: ToastrService) 
     { 
@@ -36,11 +36,12 @@ export class LoginUsuarioComponent implements OnInit {
 
     const email = this.loginUs.get('email').value;
     const senha = this.loginUs.get('senha').value;
+    var login = new Login(email, senha);
 
-    this.service.obterUsuarioEmailSenha(email, senha).subscribe(
+    this.service.SalvarLogin(login).subscribe(
       (resp)=>{
         window.sessionStorage.setItem('login', JSON.stringify(resp));
-        this.router.navigate(['resumo']);
+        this.router.navigate(['homeinvestimento']);
         console.log(resp);
       },
       (error)=>{

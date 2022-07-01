@@ -22,13 +22,12 @@ import { CadastroComponent } from './componentes/poupanca/cadastro/cadastro.comp
 import { CadastroRendaFixaComponent } from './componentes/rendaFixa/cadastro-renda-fixa/cadastro-renda-fixa.component';
 import { CadastroRendaVariavelComponent } from './componentes/rendaVariavel/cadastro-renda-variavel/cadastro-renda-variavel.component';
 import { CadastroTesouroDiretoComponent} from './componentes/tesouroDireto/cadastro-tesouro-direto/cadastro-tesouro-direto.component';
-import { LoginComponent } from './componentes/cadastroLogin/login/login.component';
 import { LoginCadastroComponent } from './componentes/cadastroLogin/login-cadastro/login-cadastro.component';
+import { LoginUsuarioComponent } from './componentes/login/login-usuario/login-usuario.component';
 
 
 const routes: Routes = [
   {path: 'banco', component: BancoComponent},
- 
   {path: 'poupanca', component: ListPoupancaComponent},
   {path: 'movimentacao', component: ListMovimentacaoComponent},
   {path: 'produtoRF', component: ListarProdutoRendaFixaComponent},
@@ -48,8 +47,8 @@ const routes: Routes = [
   {path: 'cadastroRendaFixa', component: CadastroRendaFixaComponent},
   {path: 'cadastroRendaVariavel', component: CadastroRendaVariavelComponent},
   {path: 'cadastroTesouroDireto', component: CadastroTesouroDiretoComponent},
-  {path: 'loginCadastro', component: LoginComponent},
   {path: 'cadastroDoLogin', component: LoginCadastroComponent},
+  {path: 'loginUsuario', component: LoginUsuarioComponent},
   {path: '', component: HomeComponent}
 ];
 

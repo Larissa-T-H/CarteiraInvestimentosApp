@@ -26,7 +26,12 @@ export class AutenticacaoService {
   } 
 
   obterUsuarioEmailSenha(autenticacaoEmail: string, autenticacaoSenha: string): Observable<Autenticacao> {
-    return this.http.get<Autenticacao>(`${this.url}/${autenticacaoEmail}/${autenticacaoSenha}`);
+    const teste={
+      login: autenticacaoEmail,
+      senha: autenticacaoSenha
+    }
+    return this.http.post<Autenticacao>(`${this.url}`,teste, httpOptions);
+
   }
 
 }
